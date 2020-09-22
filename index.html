@@ -6,13 +6,22 @@
 		<title>Quiz</title>
 		<!-- CSS Links -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
 		<div id="app">
-
+			<div v-for="question in questions">
+				<h2>{{ question.question }}</h2>
+				<label  v-for="answer in question.answers">
+					<input type="checkbox" :class="{ 'ans-true':usrSel }" :value="answer.id" v-model="question.selected"> {{ answer.answer }}
+				</label>
+			</div>
+			<hr>
+			<button @click="onSubmit()">Submit</button>
 		</div>
 		<!-- JavaScript Scripts -->
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="questions.js"></script>
 		<script src="script.js"></script>
 	</body>
 </html>
