@@ -2,7 +2,7 @@ var vm = new Vue({
 	el: "#app",
 	data: {
 		questions: questionsList,
-		//points: 0
+		points: 0
 	},
 	methods: {
 		onSubmit() {
@@ -14,8 +14,11 @@ var vm = new Vue({
 					if ((question.selected.includes(answer.id)) && (answer.correct == false)) {	answer.wrong = true; }
 				})
 				//if (question.answersList.includes(wrong = true)) { points++; }
+				if (question.selected == question.correct) {
+					points++;
+				}
 			});
-			//console.log(points);
+			console.log(points);
 		}
 	}
 });
