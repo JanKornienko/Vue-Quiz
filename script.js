@@ -1,20 +1,21 @@
 var vm = new Vue({
 	el: "#app",
 	data: {
-		questions: questions
+		questions: questionsList,
+		//points: 0
 	},
 	methods: {
 		onSubmit() {
+			// Authentication of answers
+			//this.points = 0
 			this.questions.forEach(question => {
-				question.answers.forEach(answer => {
-					question.selected.forEach(usrAns => {
-						if (usrAns == answer.id) { usrSel = true; }
-						if (usrSel == answer.result) { ansCor = true;}
-						else { ansCor = false }
-					})
+				question.answersList.forEach(answer => {
+					answer.correct = question.correct.includes(answer.id);
+					if ((question.selected.includes(answer.id)) && (answer.correct == false)) {	answer.wrong = true; }
 				})
-				
+				//if (question.answersList.includes(wrong = true)) { points++; }
 			});
+			//console.log(points);
 		}
 	}
 });

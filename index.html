@@ -8,15 +8,19 @@
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
+		<!-- Vue.js App -->
 		<div id="app">
-			<div v-for="question in questions">
+			<div class="question" v-for="question in questions">
+				 <!-- Displays question -->
 				<h2>{{ question.question }}</h2>
-				<label  v-for="answer in question.answers">
-					<input type="checkbox" :class="{ 'ans-true':usrSel }" :value="answer.id" v-model="question.selected"> {{ answer.answer }}
+				<!-- Displays answer -->
+				<label v-for="answer in question.answersList" class="answer" :class="{ 'correctAnswer':answer.correct, 'wrongAnswer':answer.wrong }">
+					<input type="checkbox" :value="answer.id" v-model="question.selected"> {{ answer.answer }}
 				</label>
 			</div>
 			<hr>
 			<button @click="onSubmit()">Submit</button>
+			<!-- <h6 v-if="points">{{ points }}/{{ questions.length }} points are correct.</h6> -->
 		</div>
 		<!-- JavaScript Scripts -->
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
