@@ -10,17 +10,30 @@
 	<body>
 		<!-- Vue.js App -->
 		<div id="app">
-			<div class="question" v-for="question in questions">
+			<div v-for="question in questions">
 				 <!-- Displays question -->
 				<h2>{{ question.question }}</h2>
 				<!-- Displays answer -->
-				<label v-for="answer in question.answersList" class="answer" :class="{ 'correctAnswer':answer.correct, 'wrongAnswer':answer.wrong }">
+				<label v-for="answer in question.answersList" :class="{ 'correctAnswer':answer.correct, 'wrongAnswer':answer.wrong }">
 					<input type="checkbox" :value="answer.id" v-model="question.selected"> {{ answer.answer }}
 				</label>
 			</div>
 			<hr>
 			<button @click="onSubmit()">Submit</button>
-			<h6>{{ points }}/{{ questions.length }} questions are correct.</h6>
+			<!-- <h6>{{ points }}/{{ questions.length }} questions are correct.</h6> -->
+			<!-- New Question -->
+			<h2>New Question</h2>
+			<input placeholder="Add Question" v-model="questionInput" type="text">
+			<br>
+			<input placeholder="Add Answer" v-model="answerInput" type="text">
+			<input id="correctCheckbox" type="checkbox" :value="answersInputList.length" v-model="correctInput">
+			<button @click="newAnswer()">Add answer</button>
+			<button @click="newQuestion()">Publish question</button>
+			<ul>
+				<li v-for="answerWrite in answersInputList">
+					<span>{{ answerWrite.answer }}</span>
+				</li>
+			</ul>
 		</div>
 		<!-- JavaScript Scripts -->
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
