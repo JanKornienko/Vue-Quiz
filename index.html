@@ -26,7 +26,7 @@
 			<input placeholder="Add Question" v-model="questionInput" type="text">
 			<br>
 			<input placeholder="Add Answer" v-model="answerInput" type="text">
-			<input id="correctCheckbox" type="checkbox" :value="answersInputList.length" v-model="correctInput">
+			<input id="correctCheckbox" type="checkbox">
 			<button @click="newAnswer()">Add answer</button>
 			<button @click="newQuestion()">Publish question</button>
 			<ul>

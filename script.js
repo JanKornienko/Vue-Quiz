@@ -5,7 +5,6 @@ var vm = new Vue({
 		questionInput: "",
 		answerInput: "",
 		answersInputList: [],
-		correctInput: 0,
 		correctInputList: [],
 	},
 	methods: {
@@ -16,7 +15,7 @@ var vm = new Vue({
 					answer.correct = question.correct.includes(answer.id);
 					if ((question.selected.includes(answer.id)) && (answer.correct == false)) {	answer.wrong = true; }
 				})
-			});
+			})
 		},
 
 		newAnswer() {
@@ -29,11 +28,10 @@ var vm = new Vue({
 					wrong: false
 				});
 				// Checkbox for correct answer
-				if (document.getElementById("correctCheckbox").checked = true) {
-					this.correctInputList.push(this.correctInput);
+				if (document.getElementById("correctCheckbox").checked == true) {
+					this.correctInputList.push(this.answersInputList.length - 1);
 				};
 				this.answerInput = "";
-				this.correctInput = 0;
 			} else { alert("Empty answer input"); }
 		},
 
@@ -53,6 +51,17 @@ var vm = new Vue({
 				if (this.answersInputList.length <= 0) { alert("You didn't add any answer for the question") }
 				if (this.correctInputList.length <= 0) { alert("Not selected at lease one correct answer"); }
 			}
+		},
+
+		reset() {
+			this.questions.forEach(question => {
+				question.answersList.forEach(answer => {
+					answer.correct = false;
+					answer.wrong = false;
+				})
+				question.selected = [];
+			})
 		}
+		
 	}
 });
