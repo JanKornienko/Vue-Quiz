@@ -20,7 +20,7 @@
 			</div>
 			<hr>
 			<button @click="onSubmit()">Submit</button>
-			<!-- <h6>{{ points }}/{{ questions.length }} questions are correct.</h6> -->
+			<h5>{{ points }}/{{ questions.length }} questions are correct.</h5>
 			<!-- New Question -->
 			<h2>New Question</h2>
 			<input placeholder="Add Question" v-model="questionInput" type="text">
@@ -30,8 +30,9 @@
 			<button @click="newAnswer()">Add answer</button>
 			<button @click="newQuestion()">Publish question</button>
 			<ul>
-				<li v-for="answerWrite in answersInputList">
+				<li v-for="(answerWrite, i) in answersInputList">
 					<span>{{ answerWrite.answer }}</span>
+					<span @click="deleteAns(i)">X</span>
 				</li>
 			</ul>
 		</div>
